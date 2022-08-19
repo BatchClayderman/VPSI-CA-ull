@@ -1,0 +1,41 @@
+/**************************************** VPSI-CA Alg. 5 ****************************************/
+kBit = 128		m = 2 ** 26		n = 2 ** 12
+Time: 396 / 50 = 7.92ms
+Timeof(R) = 226 / 50 = 4.52 ms
+sizeof(Receiver) = 672 B
+sizeof(R) = 16 KB
+	sizeof(R.Y) = 416 B
+	sizeof(R.k) = 16 B (*)
+	sizeof(R.Y_pi) = 48 B (*)
+	sizeof(R.W1) = 48 B
+	sizeof(R.W2) = 48 B
+	sizeof(R.V) = 48 B
+	sizeof(R.intersection) = 48 B
+	sizeof(R.*) = 208 B
+Timeof(S) = 0 / 50 = 0 ms
+sizeof(Sender) = 496 B
+sizeof(S) = 16 KB
+	sizeof(S.X) = 192 B
+	sizeof(S.k) = 16 B (*)
+	sizeof(S.V) = 48 B
+	sizeof(S.X_pi) = 48 B
+	sizeof(S.T) = 192 B (*)
+	sizeof(S.*) = 400 B (*)
+Timeof(C1) = 0 / 50 = 0 ms
+sizeof(Cloud) = 480 B
+sizeof(C1) = 16 KB
+	sizeof(C1.T) = 192 B (*)
+	sizeof(C1.Y_pi) = 48 B (*)
+	sizeof(C1.omega) = 192 B
+	sizeof(C1.W) = 48 B (*)
+	sizeof(C1.*) = 288 B (*)
+Timeof(C2) = 112 / 50 = 2.24 ms
+sizeof(Cloud) = 480 B
+sizeof(C2) = 16 KB
+	sizeof(C2.T) = 192 B (*)
+	sizeof(C2.Y_pi) = 48 B (*)
+	sizeof(C2.omega) = 192 B
+	sizeof(C2.W) = 48 B (*)
+	sizeof(C2.*) = 288 B (*)
+sizeof(*) = 296 KB (*)
+
