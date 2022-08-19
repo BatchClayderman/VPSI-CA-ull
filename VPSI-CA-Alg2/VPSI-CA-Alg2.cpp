@@ -27,11 +27,12 @@
 #ifndef RESULT
 #define RESULT "result_Alg2.tmp"
 #endif
+
 #ifndef _VPSI_CA_ALG2_H
 #define _VPSI_CA_ALG2_H
 #define kBit 128
 #define m 26
-#define n 10// 10, 11, 12
+#define n 12// 10, 11, 12
 //#define l 14
 //#define alpha int(1.5 * n)
 //#define beta 10
@@ -41,6 +42,9 @@
 using namespace std;
 typedef unsigned long long int Element;
 ofstream fp;//文件流
+size_t baseNum = kBit / (sizeof(Element) << 3);
+clock_t sub_start_time = clock(), sub_end_time = clock();
+double timerR = 0, timerS = 0, timerC1 = 0, timerC2 = 0;
 
 
 /* 子函数 */
@@ -175,7 +179,7 @@ public:
 	}
 	size_t printSize(string eleName, bool isToFile)
 	{
-		size_t baseNum = kBit / (sizeof(Element) << 3);
+		(isToFile ? fp : cout) << "Timeof(" << eleName << ") = " << timerR * baseNum << " / " << TimeToTest << " = " << timerR * baseNum / TimeToTest << " ms" << endl;
 		(isToFile ? fp : cout) << "sizeof(Receiver) = " << sizeof(Receiver) * baseNum << " B" << endl;
 		(isToFile ? fp : cout) << "sizeof(" << eleName << ") = " << sizeof(this) * baseNum << " KB" << endl;
 		(isToFile ? fp : cout) << "\tsizeof(" << eleName << ".Y) = " << sizeof(this->Y) * baseNum << " B" << endl;
@@ -246,7 +250,7 @@ public:
 	}
 	size_t printSize(string eleName, bool isToFile)
 	{
-		size_t baseNum = kBit / (sizeof(Element) << 3);
+		(isToFile ? fp : cout) << "Timeof(" << eleName << ") = " << timerS * baseNum << " / " << TimeToTest << " = " << timerS * baseNum / TimeToTest << " ms" << endl;
 		(isToFile ? fp : cout) << "sizeof(Sender) = " << sizeof(Sender) * baseNum << " B" << endl;
 		(isToFile ? fp : cout) << "sizeof(" << eleName << ") = " << sizeof(this) * baseNum << " KB" << endl;
 		(isToFile ? fp : cout) << "\tsizeof(" << eleName << ".X) = " << sizeof(this->X) * baseNum << " B" << endl;
@@ -299,7 +303,10 @@ public:
 	}
 	size_t printSize(string eleName, bool isToFile)
 	{
-		size_t baseNum = kBit / (sizeof(Element) << 3);
+		if ("C1" == eleName)
+			(isToFile ? fp : cout) << "Timeof(C1) = " << timerC1 * baseNum << " / " << TimeToTest << " = " << timerC1 * baseNum / TimeToTest << " ms" << endl;
+		else if ("C2" == eleName)
+			(isToFile ? fp : cout) << "Timeof(C2) = " << timerC2 * baseNum << " / " << TimeToTest << " = " << timerC2 * baseNum / TimeToTest << " ms" << endl;
 		(isToFile ? fp : cout) << "sizeof(Cloud) = " << sizeof(Cloud) * baseNum << " B" << endl;
 		(isToFile ? fp : cout) << "sizeof(" << eleName << ") = " << sizeof(this) * baseNum << " KB" << endl;
 		(isToFile ? fp : cout) << "\tsizeof(" << eleName << ".T) = " << sizeof(this->T) * baseNum << " B (*)" << endl;
@@ -331,25 +338,25 @@ void input(bool isAuto)
 
 void protocol()
 {
-	R.rand_k();
-	S.receive_k(R.send_k());
-	S.rand_V();
-	S.shuffle_from_X_to_X_pi();
-	S.generate_T();
-	C1.receive_T(S.send_T());
-	C2.receive_T(S.send_T());
-	R.shuffle_from_Y_to_Y_pi();
-	C1.receive_Y_pi(R.send_Y_pi());
-	C2.receive_Y_pi(R.send_Y_pi());
-	C1.compute_omega();
-	C1.rand_W();//C1.rand_W1();
-	R.receive_W1(C1.send_W());//R.receive_W1(C1.send_W1());
-	C2.compute_omega();
-	C2.rand_W();//C1.rand_W2();
-	R.receive_W2(C2.send_W());//R.receive_W2(C2.send_W2());
-	cout << "verify = " << (R.verify() ? "true" : "false") << endl;
-	R.rand_V();
-	R.printIntersection();
+	sub_start_time = clock(); 	R.rand_k(); 														sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	S.receive_k(R.send_k());											sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time; timerS += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	S.rand_V();															sub_end_time = clock(); timerS += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	S.shuffle_from_X_to_X_pi();											sub_end_time = clock(); timerS += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	S.generate_T();														sub_end_time = clock(); timerS += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	C1.receive_T(S.send_T());											sub_end_time = clock(); timerS += (double)sub_end_time - sub_start_time; timerC1 += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	C2.receive_T(S.send_T());											sub_end_time = clock(); timerS += (double)sub_end_time - sub_start_time; timerC2 += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	R.shuffle_from_Y_to_Y_pi();											sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	C1.receive_Y_pi(R.send_Y_pi());										sub_end_time = clock(); timerC1 += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	C2.receive_Y_pi(R.send_Y_pi());										sub_end_time = clock(); timerC2 += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	C1.compute_omega();													sub_end_time = clock(); timerC1 += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	C1.rand_W();														sub_end_time = clock(); timerC1 += (double)sub_end_time - sub_start_time;//C1.rand_W1();
+	sub_start_time = clock(); 	R.receive_W1(C1.send_W());											sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time; timerC1 += (double)sub_end_time - sub_start_time;//R.receive_W1(C1.send_W1());
+	sub_start_time = clock(); 	C2.compute_omega();													sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	C2.rand_W();														sub_end_time = clock(); timerC2 += (double)sub_end_time - sub_start_time;//C1.rand_W2();
+	sub_start_time = clock(); 	R.receive_W2(C2.send_W());											sub_end_time = clock(); timerC2 += (double)sub_end_time - sub_start_time;//R.receive_W2(C2.send_W2());
+	sub_start_time = clock(); 	cout << "verify = " << (R.verify() ? "true" : "false") << endl;		sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time; timerC2 += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	R.rand_V();															sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time;
+	sub_start_time = clock(); 	R.printIntersection();												sub_end_time = clock(); timerR += (double)sub_end_time - sub_start_time;
 	return;
 }
 
@@ -372,7 +379,7 @@ bool dump(clock_t start_time, clock_t end_time)
 	{
 		fp << "/**************************************** VPSI-CA Alg. 5 ****************************************/" << endl;
 		fp << "kBit = " << kBit << "\t\tm = 2 ** " << m << "\t\tn = 2 ** " << n << endl;
-		fp << "Time: " << ((double)end_time - start_time) * kBit / (sizeof(Element) << 3) << " / " << TimeToTest << " = " << ((double)end_time - start_time) * kBit / (sizeof(Element) << 3) / TimeToTest << "ms" << endl;
+		fp << "Time: " << ((double)end_time - start_time) * baseNum << " / " << TimeToTest << " = " << ((double)end_time - start_time) * baseNum / TimeToTest << "ms" << endl;
 		fp << "sizeof(*) = " << ((R.printSize("R", true) + S.printSize("S", true) + C1.printSize("C1", true) + C2.printSize("C2", true)) >> 2) << " KB (*)" << endl << endl;
 		fp.close();
 		return true;
@@ -394,7 +401,7 @@ int main()
 	cout << endl;
 	cout << "/**************************************** VPSI-CA Alg. 2 ****************************************/" << endl;
 	cout << "kBit = " << kBit << "\t\tm = 2 ** " << m << "\t\tn = 2 ** " << n << endl;
-	cout << "Time: " << ((double)end_time - start_time) * kBit / (sizeof(Element) << 3) << " / " << TimeToTest << " = " << ((double)end_time - start_time) * kBit / (sizeof(Element) << 3) / TimeToTest << "ms" << endl;
+	cout << "Time: " << ((double)end_time - start_time) * baseNum << " / " << TimeToTest << " = " << ((double)end_time - start_time) * baseNum / TimeToTest << "ms" << endl;
 	cout << "sizeof(*) = " << ((R.printSize("R", false) + S.printSize("S", false) + C1.printSize("C1", false) + C2.printSize("C2", false)) >> 2) << " KB (*)" << endl << endl;
 	return dump(start_time, end_time) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
