@@ -1,10 +1,10 @@
 /**************************************** VPSI-CA Alg. 5 ****************************************/
-kBit = 128		m = 2 ** 26		n = 2 ** 12		l = 2 ** 14
-Time: 446 / 50 = 8.92ms
-Timeof(R) = 262 / 50 = 5.24 ms
-sizeof(Receiver) = 688 B
+kBit = 128		m = 2 ** 10		n = 2 ** 26		l = 2 ** 8
+Time: 426 / 50 = 8.52ms
+Timeof(R) = 250 / 50 = 5 ms
+sizeof(Receiver) = 432 B
 sizeof(R) = 16 KB
-	sizeof(R.Y) = 416 B
+	sizeof(R.Y) = 160 B
 	sizeof(R.k1) = 16 B (*)
 	sizeof(R.k2) = 16 B (*)
 	sizeof(R.E) = 48 B
@@ -13,24 +13,24 @@ sizeof(R) = 16 KB
 	sizeof(R.V) = 48 B
 	sizeof(R.intersection) = 48 B
 	sizeof(R.*) = 128 B (*)
-Timeof(S) = 2 / 50 = 0.04 ms
-sizeof(Sender) = 1200 B
+Timeof(S) = 10 / 50 = 0.2 ms
+sizeof(Sender) = 1680 B
 sizeof(S) = 16 KB
-	sizeof(S.X) = 192 B
+	sizeof(S.X) = 416 B
 	sizeof(S.k1) = 16 B (*)
 	sizeof(S.k2) = 16 B (*)
 	sizeof(S.E) = 48 B
-	sizeof(S.V) = 416 B
+	sizeof(S.V) = 544 B
 	sizeof(S.V_pi) = 48 B
 	sizeof(S.X_pi) = 48 B
-	sizeof(S.T) = 416 B (*)
-	sizeof(S.*) = 448 B (*)
-Timeof(C) = 0 / 50 = 0 ms
+	sizeof(S.T) = 544 B (*)
+	sizeof(S.*) = 576 B (*)
+Timeof(C) = 2 / 50 = 0.04 ms
 sizeof(C) = 16 KB
-	sizeof(C.T) = 416 B (*)
+	sizeof(C.T) = 544 B (*)
 	sizeof(C.Y_pi) = 48 B (*)
-	sizeof(C.omega) = 640 B
+	sizeof(C.omega) = 288 B
 	sizeof(C.W) = 48 B (*)
-	sizeof(C.*) = 512 B (*)
-sizeof(*) = 272 KB (*)
+	sizeof(C.*) = 640 B (*)
+sizeof(*) = 336 KB (*)
 
