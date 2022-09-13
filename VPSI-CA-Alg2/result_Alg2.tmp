@@ -1,10 +1,10 @@
 /**************************************** VPSI-CA Alg. 5 ****************************************/
-kBit = 128		m = 2 ** 26		n = 2 ** 10
-Time: 186 / 50 = 3.72ms
-Timeof(R) = 80 / 50 = 1.6 ms
-sizeof(Receiver) = 672 B
+kBit = 128		m = 2 ** 10		n = 2 ** 26
+Time: 126 / 50 = 2.52ms
+Timeof(R) = 58 / 50 = 1.16 ms
+sizeof(Receiver) = 416 B
 sizeof(R) = 16 KB
-	sizeof(R.Y) = 416 B
+	sizeof(R.Y) = 160 B
 	sizeof(R.k) = 16 B (*)
 	sizeof(R.Y_pi) = 48 B (*)
 	sizeof(R.W1) = 48 B
@@ -13,29 +13,29 @@ sizeof(R) = 16 KB
 	sizeof(R.intersection) = 48 B
 	sizeof(R.*) = 208 B
 Timeof(S) = 0 / 50 = 0 ms
-sizeof(Sender) = 432 B
+sizeof(Sender) = 944 B
 sizeof(S) = 16 KB
-	sizeof(S.X) = 160 B
+	sizeof(S.X) = 416 B
 	sizeof(S.k) = 16 B (*)
 	sizeof(S.V) = 48 B
 	sizeof(S.X_pi) = 48 B
-	sizeof(S.T) = 160 B (*)
-	sizeof(S.*) = 336 B (*)
-Timeof(C1) = 2 / 50 = 0.04 ms
-sizeof(Cloud) = 416 B
+	sizeof(S.T) = 416 B (*)
+	sizeof(S.*) = 848 B (*)
+Timeof(C1) = 6 / 50 = 0.12 ms
+sizeof(Cloud) = 928 B
 sizeof(C1) = 16 KB
-	sizeof(C1.T) = 160 B (*)
+	sizeof(C1.T) = 416 B (*)
 	sizeof(C1.Y_pi) = 48 B (*)
-	sizeof(C1.omega) = 160 B
+	sizeof(C1.omega) = 416 B
 	sizeof(C1.W) = 48 B (*)
-	sizeof(C1.*) = 256 B (*)
-Timeof(C2) = 36 / 50 = 0.72 ms
-sizeof(Cloud) = 416 B
+	sizeof(C1.*) = 512 B (*)
+Timeof(C2) = 20 / 50 = 0.4 ms
+sizeof(Cloud) = 928 B
 sizeof(C2) = 16 KB
-	sizeof(C2.T) = 160 B (*)
+	sizeof(C2.T) = 416 B (*)
 	sizeof(C2.Y_pi) = 48 B (*)
-	sizeof(C2.omega) = 160 B
+	sizeof(C2.omega) = 416 B
 	sizeof(C2.W) = 48 B (*)
-	sizeof(C2.*) = 256 B (*)
-sizeof(*) = 264 KB (*)
+	sizeof(C2.*) = 512 B (*)
+sizeof(*) = 520 KB (*)
 

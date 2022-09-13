@@ -1,11 +1,11 @@
 @ECHO OFF
 CD /D "%~DP0Results"
 FOR /F %%I IN ('DIR /A-D /B "%~DP0x64\Release" ^| FINDSTR /I ".EXE"') DO (START /REALTIME /MIN "" "%~DP0x64\Release\%%I")
-SET /P N=请键入 n 值：
+SET /P M=请键入 m 值：
 FOR /F %%I IN ('DIR /A-D /B "%~DP0Results" ^| FINDSTR /I ".TMP"') DO (
-	IF EXIST "%%~NI_%N%.txt" (DEL /Q "%%~NI_%N%.txt")
-	ECHO %%~NI_%N%.txt
-	REN "%~DP0Results\%%~NI.tmp" "%%~NI_%N%.txt"
+	IF EXIST "%%~NI_%M%.txt" (DEL /Q "%%~NI_%M%.txt")
+	ECHO %%~NI_%M%.txt
+	REN "%~DP0Results\%%~NI.tmp" "%%~NI_%M%.txt"
 )
 PAUSE>NUL
 EXIT

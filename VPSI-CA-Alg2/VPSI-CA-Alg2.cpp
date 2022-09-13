@@ -31,10 +31,10 @@
 #ifndef _VPSI_CA_ALG2_H
 #define _VPSI_CA_ALG2_H
 #define kBit 128
-#define m 26
-#define n 12// 10, 11, 12
-//#define l 14
-//#define alpha int(1.5 * n)
+#define m 10 // 10-14
+#define n 26
+//#define l 8
+//#define alpha int(1.5 * m)
 //#define beta 10
 //#define lambda 40
 #define TimeToTest 50
