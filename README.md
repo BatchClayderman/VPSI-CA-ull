@@ -1,10 +1,12 @@
 # VPSI-CA
 
-This is a simulation implementation of VPSI-CA, where the datum type is unsigned long long (64-bit). The network communication is simulated by memory copying. 
+This is the official simulation implementation of the VPSI-CA cryptography scheme in the C/C++ programming language, where the datum type is ``unsigned long long int`` (64-bit). The network communication is simulated by memory copying. 
 
-### About timing in or after September 2024
+### Time Consumption Computation
 
-The recent period has witnessed the ``#include<chrono>`` reach a timing level of nanoseconds. Users can modify the timing codes in this repo to make more exact timing. 
+For time consumption computation in or after September 2024, better time consumption computation can be done. 
+
+The recent period has witnessed the ``#include<chrono>`` reach a computation level of nanoseconds. Users can modify the time consumption computation codes in this repository to make more exact timing. 
 
 The following codes may be useful for cross-platform universal improvements. 
 
@@ -28,3 +30,19 @@ const TIME_POINT_TYPE startTime = chrono::high_resolution_clock::now();
 long long int timeDelta = (chrono::high_resolution_clock::now() - startTime).count();
 cout << "Time: " << timeDelta << " ns" << endl;
 ```
+
+### Citations
+
+If you wish to cite this work, please use the following BibTeX. 
+
+```
+@article{chen2024efficient,
+  title={Efficient Verifiable Cloud-Assisted PSI Cardinality for Privacy-Preserving Contact Tracing},
+  author={Chen, Yafeng and Wu, Axin and Yang, Yuer and Xin, Xiangjun and Song, Chang},
+  journal={IEEE Transactions on Cloud Computing},
+  year={2024},
+  publisher={IEEE}
+}
+```
+
+Thank you for your citations. 
