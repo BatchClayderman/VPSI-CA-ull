@@ -1,6 +1,6 @@
 # VPSI-CA
 
-This is the official simulation implementation of the VPSI-CA cryptography scheme in the C/C++ programming language, where the datum type is ``unsigned long long int`` (64-bit). The network communication is simulated by memory copying. 
+This is the official simulation implementation of the VPSI-CA cryptography scheme (``Efficient Verifiable Cloud-Assisted PSI Cardinality for Privacy-Preserving Contact Tracing``) in C/C++ programming language, where the datum type is ``unsigned long long int`` (64-bit). The network communication is simulated by memory copying. 
 
 ### Time Consumption Computation
 
@@ -31,7 +31,7 @@ long long int timeDelta = (chrono::high_resolution_clock::now() - startTime).cou
 cout << "Time: " << timeDelta << " ns" << endl;
 ```
 
-### Citations
+### Citation
 
 If you wish to cite this work, please use the following BibTeX. 
 
