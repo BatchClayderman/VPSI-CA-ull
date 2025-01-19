@@ -2,7 +2,7 @@
 
 This is the official simulation implementation of the VPSI-CA cryptography scheme (``Efficient Verifiable Cloud-Assisted PSI Cardinality for Privacy-Preserving Contact Tracing``) in C/C++ programming language, where the datum type is ``unsigned long long int`` (64-bit). The network communication is simulated by memory copying. 
 
-### Time Consumption Computation
+### Time consumption computation
 
 For time consumption computation in or after September 2024, better time consumption computation can be done. 
 
